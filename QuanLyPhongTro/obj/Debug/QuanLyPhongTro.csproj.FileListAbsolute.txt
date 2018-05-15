@@ -1,0 +1,15 @@
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\QuanLyPhongTro.exe.config
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\QuanLyPhongTro.exe
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\QuanLyPhongTro.pdb
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormMain.resources
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.Properties.Resources.resources
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.csproj.GenerateResource.Cache
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.csproj.CoreCompileInputs.cache
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.exe
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.pdb
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\EntityFramework.dll
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\EntityFramework.SqlServer.dll
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\EntityFramework.xml
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\EntityFramework.SqlServer.xml
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.csprojResolveAssemblyReference.cache
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormAddRoom.resources

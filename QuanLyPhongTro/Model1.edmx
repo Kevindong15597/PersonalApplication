@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuanLyPhongTroModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValueName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Value" Type="int" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoomName" Type="nvarchar" MaxLength="20" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RoomStatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenantName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenantId" Type="varchar" MaxLength="12" />
+          <Property Name="RoomID" Type="int" Nullable="false" />
+          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="Total" Type="int" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Room_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_RoomStatus">
+          <End Role="RoomStatus" Type="Self.RoomStatus" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_RoomStatus">
+          <End Role="RoomStatus" Type="Self.RoomStatus" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyPhongTroModelStoreContainer">
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoomStatus" EntityType="Self.RoomStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Room_Price" Association="Self.FK_Room_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_RoomStatus" Association="Self.FK_Room_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Price" Association="Self.FK_Session_Price">
+            <End Role="Price" EntitySet="Price" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Room" Association="Self.FK_Session_Room">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_RoomStatus" Association="Self.FK_Session_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Session" EntitySet="Session" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyPhongTroModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValueName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Price" FromRole="Price" ToRole="Room" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Session_Price" FromRole="Price" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Price" Relationship="Self.FK_Room_Price" FromRole="Room" ToRole="Price" />
+          <NavigationProperty Name="RoomStatu" Relationship="Self.FK_Room_RoomStatus" FromRole="Room" ToRole="RoomStatus" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Session_Room" FromRole="Room" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="RoomStatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_RoomStatus" FromRole="RoomStatus" ToRole="Room" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Session_RoomStatus" FromRole="RoomStatus" ToRole="Session" />
+        </EntityType>
+        <EntityType Name="Session">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenantName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenantId" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="RoomID" Type="Int32" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Price" Relationship="Self.FK_Session_Price" FromRole="Session" ToRole="Price" />
+          <NavigationProperty Name="Room" Relationship="Self.FK_Session_Room" FromRole="Session" ToRole="Room" />
+          <NavigationProperty Name="RoomStatu" Relationship="Self.FK_Session_RoomStatus" FromRole="Session" ToRole="RoomStatus" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Room_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Price">
+          <End Role="Price" Type="Self.Price" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Price">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_RoomStatus">
+          <End Role="RoomStatus" Type="Self.RoomStatu" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_Room">
+          <End Role="Room" Type="Self.Room" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Session_RoomStatus">
+          <End Role="RoomStatus" Type="Self.RoomStatu" Multiplicity="1" />
+          <End Role="Session" Type="Self.Session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Session">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyPhongTroEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prices" EntityType="Self.Price" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="RoomStatus" EntityType="Self.RoomStatu" />
+          <EntitySet Name="Sessions" EntityType="Self.Session" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Room_Price" Association="Self.FK_Room_Price">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Price" Association="Self.FK_Session_Price">
+            <End Role="Price" EntitySet="Prices" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_RoomStatus" Association="Self.FK_Room_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_Room" Association="Self.FK_Session_Room">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Session_RoomStatus" Association="Self.FK_Session_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Session" EntitySet="Sessions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyPhongTroModelStoreContainer" CdmEntityContainer="QuanLyPhongTroEntities1">
+          <EntitySetMapping Name="Prices">
+            <EntityTypeMapping TypeName="QuanLyPhongTroModel.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ValueName" ColumnName="ValueName" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="QuanLyPhongTroModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoomStatus">
+            <EntityTypeMapping TypeName="QuanLyPhongTroModel.RoomStatu">
+              <MappingFragment StoreEntitySet="RoomStatus">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="QuanLyPhongTroModel.Session">
+              <MappingFragment StoreEntitySet="Session">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TenantName" ColumnName="TenantName" />
+                <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+                <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLyPhongTroModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
