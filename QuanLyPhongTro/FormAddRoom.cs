@@ -14,10 +14,7 @@ namespace QuanLyPhongTro
     {
         public FormAddRoom()
         {
-            InitializeComponent();
-            this.Load += new EventHandler(FormAddRoom_Load);
-            this.btnSave.Click += new EventHandler(btnSave_Click);
-            this.btnCancel.Click += new EventHandler(btnCancel_Click);
+            InitializeComponent();                       
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -27,25 +24,26 @@ namespace QuanLyPhongTro
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            
-            string RoomName = this.txtRoomName.Text;
+
+           
+            string RoomName = this.txtRoomName.Text;            
             int RoomType = (int)this.cboRoomType.SelectedValue;
             int RoomStatus = (int)this.cboRoomStatus.SelectedValue;
-            var db = new QuanLyPhongTroEntities1();
+            var db = new QuanLyPhongTroEntities2();
             Room room = new Room();
             room.StatusID = RoomStatus;
             room.RoomName = RoomName;
             room.TypeID = RoomType;
             db.Rooms.Add(room);
             db.SaveChanges();
-            MessageBox.Show("Success");
             this.Close();
+            
         }
 
         private void FormAddRoom_Load(object sender, EventArgs e)
         {
             
-            QuanLyPhongTroEntities1 db = new QuanLyPhongTroEntities1();
+            QuanLyPhongTroEntities2 db = new QuanLyPhongTroEntities2();
             //loading data for combo box Room status
             this.cboRoomStatus.DataSource = db.RoomStatus.ToList();
             //display the status name into the combo box

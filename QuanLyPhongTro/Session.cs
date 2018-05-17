@@ -20,13 +20,9 @@ namespace QuanLyPhongTro
         public int RoomID { get; set; }
         public System.DateTime DateStart { get; set; }
         public Nullable<System.DateTime> DateEnd { get; set; }
-        public Nullable<int> Duration { get; set; }
         public Nullable<int> Total { get; set; }
-        public int StatusID { get; set; }
-        public int TypeID { get; set; }
+        public Nullable<int> Duration { get; set; }
     
-        public virtual Price Price { get; set; }
         public virtual Room Room { get; set; }
-        public virtual RoomStatu RoomStatu { get; set; }
     }
 }

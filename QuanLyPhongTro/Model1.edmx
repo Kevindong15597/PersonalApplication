@@ -39,10 +39,8 @@
           <Property Name="RoomID" Type="int" Nullable="false" />
           <Property Name="DateStart" Type="datetime" Nullable="false" />
           <Property Name="DateEnd" Type="datetime" />
-          <Property Name="Duration" Type="int" />
           <Property Name="Total" Type="int" />
-          <Property Name="StatusID" Type="int" Nullable="false" />
-          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="Duration" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -78,18 +76,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Session_Price">
-          <End Role="Price" Type="Self.Price" Multiplicity="1" />
-          <End Role="Session" Type="Self.Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Price">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Session">
-              <PropertyRef Name="TypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Session_Room">
           <End Role="Room" Type="Self.Room" Multiplicity="1" />
           <End Role="Session" Type="Self.Session" Multiplicity="*" />
@@ -99,18 +85,6 @@
             </Principal>
             <Dependent Role="Session">
               <PropertyRef Name="RoomID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Session_RoomStatus">
-          <End Role="RoomStatus" Type="Self.RoomStatus" Multiplicity="1" />
-          <End Role="Session" Type="Self.Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomStatus">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Session">
-              <PropertyRef Name="StatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -128,16 +102,8 @@
             <End Role="RoomStatus" EntitySet="RoomStatus" />
             <End Role="Room" EntitySet="Room" />
           </AssociationSet>
-          <AssociationSet Name="FK_Session_Price" Association="Self.FK_Session_Price">
-            <End Role="Price" EntitySet="Price" />
-            <End Role="Session" EntitySet="Session" />
-          </AssociationSet>
           <AssociationSet Name="FK_Session_Room" Association="Self.FK_Session_Room">
             <End Role="Room" EntitySet="Room" />
-            <End Role="Session" EntitySet="Session" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Session_RoomStatus" Association="Self.FK_Session_RoomStatus">
-            <End Role="RoomStatus" EntitySet="RoomStatus" />
             <End Role="Session" EntitySet="Session" />
           </AssociationSet>
         </EntityContainer>
@@ -154,7 +120,6 @@
           <Property Name="ValueName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Value" Type="Int32" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Price" FromRole="Price" ToRole="Room" />
-          <NavigationProperty Name="Sessions" Relationship="Self.FK_Session_Price" FromRole="Price" ToRole="Session" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -175,7 +140,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_RoomStatus" FromRole="RoomStatus" ToRole="Room" />
-          <NavigationProperty Name="Sessions" Relationship="Self.FK_Session_RoomStatus" FromRole="RoomStatus" ToRole="Session" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
@@ -187,13 +151,9 @@
           <Property Name="RoomID" Type="Int32" Nullable="false" />
           <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateEnd" Type="DateTime" Precision="3" />
-          <Property Name="Duration" Type="Int32" />
           <Property Name="Total" Type="Int32" />
-          <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <Property Name="TypeID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Price" Relationship="Self.FK_Session_Price" FromRole="Session" ToRole="Price" />
+          <Property Name="Duration" Type="Int32" />
           <NavigationProperty Name="Room" Relationship="Self.FK_Session_Room" FromRole="Session" ToRole="Room" />
-          <NavigationProperty Name="RoomStatu" Relationship="Self.FK_Session_RoomStatus" FromRole="Session" ToRole="RoomStatus" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -213,18 +173,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Room">
-              <PropertyRef Name="TypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Session_Price">
-          <End Role="Price" Type="Self.Price" Multiplicity="1" />
-          <End Role="Session" Type="Self.Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Price">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Session">
               <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
@@ -253,19 +201,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Session_RoomStatus">
-          <End Role="RoomStatus" Type="Self.RoomStatu" Multiplicity="1" />
-          <End Role="Session" Type="Self.Session" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoomStatus">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Session">
-              <PropertyRef Name="StatusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="QuanLyPhongTroEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="QuanLyPhongTroEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Prices" EntityType="Self.Price" />
           <EntitySet Name="Rooms" EntityType="Self.Room" />
           <EntitySet Name="RoomStatus" EntityType="Self.RoomStatu" />
@@ -275,10 +211,6 @@
             <End Role="Price" EntitySet="Prices" />
             <End Role="Room" EntitySet="Rooms" />
           </AssociationSet>
-          <AssociationSet Name="FK_Session_Price" Association="Self.FK_Session_Price">
-            <End Role="Price" EntitySet="Prices" />
-            <End Role="Session" EntitySet="Sessions" />
-          </AssociationSet>
           <AssociationSet Name="FK_Room_RoomStatus" Association="Self.FK_Room_RoomStatus">
             <End Role="RoomStatus" EntitySet="RoomStatus" />
             <End Role="Room" EntitySet="Rooms" />
@@ -287,17 +219,13 @@
             <End Role="Room" EntitySet="Rooms" />
             <End Role="Session" EntitySet="Sessions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Session_RoomStatus" Association="Self.FK_Session_RoomStatus">
-            <End Role="RoomStatus" EntitySet="RoomStatus" />
-            <End Role="Session" EntitySet="Sessions" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QuanLyPhongTroModelStoreContainer" CdmEntityContainer="QuanLyPhongTroEntities1">
+        <EntityContainerMapping StorageEntityContainer="QuanLyPhongTroModelStoreContainer" CdmEntityContainer="QuanLyPhongTroEntities2">
           <EntitySetMapping Name="Prices">
             <EntityTypeMapping TypeName="QuanLyPhongTroModel.Price">
               <MappingFragment StoreEntitySet="Price">
@@ -334,10 +262,8 @@
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="Duration" ColumnName="Duration" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

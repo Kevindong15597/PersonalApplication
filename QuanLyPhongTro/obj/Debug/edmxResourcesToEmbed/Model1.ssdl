@@ -34,10 +34,8 @@
     <Property Name="RoomID" Type="int" Nullable="false" />
     <Property Name="DateStart" Type="datetime" Nullable="false" />
     <Property Name="DateEnd" Type="datetime" />
-    <Property Name="Duration" Type="int" />
     <Property Name="Total" Type="int" />
-    <Property Name="StatusID" Type="int" Nullable="false" />
-    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="Duration" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -73,18 +71,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Session_Price">
-    <End Role="Price" Type="Self.Price" Multiplicity="1" />
-    <End Role="Session" Type="Self.Session" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Price">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Session">
-        <PropertyRef Name="TypeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Session_Room">
     <End Role="Room" Type="Self.Room" Multiplicity="1" />
     <End Role="Session" Type="Self.Session" Multiplicity="*" />
@@ -94,18 +80,6 @@
       </Principal>
       <Dependent Role="Session">
         <PropertyRef Name="RoomID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Session_RoomStatus">
-    <End Role="RoomStatus" Type="Self.RoomStatus" Multiplicity="1" />
-    <End Role="Session" Type="Self.Session" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RoomStatus">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Session">
-        <PropertyRef Name="StatusID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -123,16 +97,8 @@
       <End Role="RoomStatus" EntitySet="RoomStatus" />
       <End Role="Room" EntitySet="Room" />
     </AssociationSet>
-    <AssociationSet Name="FK_Session_Price" Association="Self.FK_Session_Price">
-      <End Role="Price" EntitySet="Price" />
-      <End Role="Session" EntitySet="Session" />
-    </AssociationSet>
     <AssociationSet Name="FK_Session_Room" Association="Self.FK_Session_Room">
       <End Role="Room" EntitySet="Room" />
-      <End Role="Session" EntitySet="Session" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Session_RoomStatus" Association="Self.FK_Session_RoomStatus">
-      <End Role="RoomStatus" EntitySet="RoomStatus" />
       <End Role="Session" EntitySet="Session" />
     </AssociationSet>
   </EntityContainer>

@@ -13,3 +13,8 @@ D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\EntityFramework.x
 D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\bin\Debug\EntityFramework.SqlServer.xml
 D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.csprojResolveAssemblyReference.cache
 D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormAddRoom.resources
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormAddPrice.resources
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormAddSession.resources
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormEditRoom.resources
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormEditPrice.resources
+D:\PersonalApplication\QuanLyPhongTro\QuanLyPhongTro\obj\Debug\QuanLyPhongTro.FormEditSession.resources

@@ -18,7 +18,6 @@ namespace QuanLyPhongTro
         public Price()
         {
             this.Rooms = new HashSet<Room>();
-            this.Sessions = new HashSet<Session>();
         }
     
         public int ID { get; set; }
@@ -27,7 +26,5 @@ namespace QuanLyPhongTro
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Rooms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Session> Sessions { get; set; }
     }
 }

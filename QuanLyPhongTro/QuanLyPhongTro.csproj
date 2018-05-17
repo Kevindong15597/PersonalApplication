@@ -72,6 +72,30 @@
     <Compile Include="FormAddRoom.Designer.cs">
       <DependentUpon>FormAddRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddSession.Designer.cs">
+      <DependentUpon>FormAddSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditPrice.Designer.cs">
+      <DependentUpon>FormEditPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditRoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditRoom.Designer.cs">
+      <DependentUpon>FormEditRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditSession.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditSession.Designer.cs">
+      <DependentUpon>FormEditSession.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +113,7 @@
     </Compile>
     <Compile Include="model\PriceView.cs" />
     <Compile Include="model\RoomView.cs" />
+    <Compile Include="model\SessionView.cs" />
     <Compile Include="Price.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -114,6 +139,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddRoom.resx">
       <DependentUpon>FormAddRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddSession.resx">
+      <DependentUpon>FormAddSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditPrice.resx">
+      <DependentUpon>FormEditPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditRoom.resx">
+      <DependentUpon>FormEditRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditSession.resx">
+      <DependentUpon>FormEditSession.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -160,6 +197,5 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

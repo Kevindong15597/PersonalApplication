@@ -8,6 +8,12 @@ namespace QuanLyPhongTro
 {
     static class Program
     {
+        /*
+         * chưa Delete Room
+         * chưa Delete Price
+         * chưa Add Session
+         * chưa Edit Session
+         */ 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

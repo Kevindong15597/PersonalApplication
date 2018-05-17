@@ -13,10 +13,10 @@ namespace QuanLyPhongTro
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QuanLyPhongTroEntities1 : DbContext
+    public partial class QuanLyPhongTroEntities2 : DbContext
     {
-        public QuanLyPhongTroEntities1()
-            : base("name=QuanLyPhongTroEntities1")
+        public QuanLyPhongTroEntities2()
+            : base("name=QuanLyPhongTroEntities2")
         {
         }
     
